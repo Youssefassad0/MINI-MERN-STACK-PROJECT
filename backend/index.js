@@ -3,15 +3,19 @@ import { PORT, mongodbURL } from "./config.js";
 import mongoose from "mongoose";
 import { Book } from "./models/BookModel.js";
 import BooksRoute from './routes/BookRoute.js'
+import cors from 'cors';
 const app = express();
 
 app.use(express.json());
-
+// app.use(cors({
+//   origin:'http://localhost:3000',
+//   methods:['GET','POST','PUT','DELETE'],
+//   allowedHeaders:['Content-type']
+// }));
 app.get("/", (req, res) => {
   return res.status(234).send("Welcome To Book Project");
 });
 app.use('/books',BooksRoute)
-
 
 mongoose
   .connect(mongodbURL)
